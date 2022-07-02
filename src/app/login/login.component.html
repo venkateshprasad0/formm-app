@@ -1,25 +1,30 @@
 <h1 style="text-align:center">
-  Angular Login Example
+  Angular Login
   </h1>
   <div class="login">
   <h2 class="login-header">Log in</h2>
   <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
 
-  <p [ngClass]="{ 'has-error': isSubmitted && formControls['emaial'].errors }">
-  <input type="email" placeholder="Email" formControlName="email">
+  <p [ngClass]="{ 'has-error': isSubmitted && formControls['UserName'].errors }">
+  <input type="text" placeholder="UserName" formControlName="UserName">
   </p>
 
-  <div *ngIf="isSubmitted && formControls['email'].errors" class="help-block">
-  <div *ngIf="formControls['email'].errors['required']">Email is required</div>
+  <div *ngIf="isSubmitted && formControls['UserName'].errors" class="help-block">
+  <div *ngIf="formControls['UserName'].errors['required']" style="color: red ;" >UserName is required</div>
+  <div *ngIf="formControls['UserName'].errors['maxLength']" style="color: red ;" >UserName should be less than 10 </div>
   </div>
+  
 
   <p [ngClass]="{ 'has-error': isSubmitted && formControls['password'].errors }">
   <input type="password" placeholder="Password" formControlName="password">
   </p>
 
   <div *ngIf="isSubmitted && formControls['password'].errors" class="help-block">
-  <div *ngIf="formControls['password'].errors['required']">Password is required</div>
+  <div *ngIf="formControls['password'].errors['required']" style="color:red" >Password is required</div>
+  <div *ngIf="formControls['password'].errors['minLength']" style="color:red" >Password must be greater than 10</div>
   </div>
+
+  
 
   <p>
   <input type="submit" value="Log in">
